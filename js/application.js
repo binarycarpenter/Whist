@@ -1,0 +1,1 @@
+whistGame = new Game();

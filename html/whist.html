@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" manifest="cache.appcache"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>2048</title>
+    <title>Whist</title>
 
     <link href="../css/whist.css" rel="stylesheet" type="text/css">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,12 +11,93 @@
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, target-density=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta name="format-detection" content="telephone=no">
   </head>
-  <body style="">
+
+  <body>
+    <div id="table">
+        <div id="score" class="overlay gameInfo">
+            <div class="header">
+                <span class="firstCell"></span>
+                <span class="cell">Us</span>
+                <span class="cell">Them</span>
+            </div>
+            <div class="score">
+                <span class="firstCell">Score</span>
+                <span id="score0" class="cell"></span>
+                <span id="score1" class="cell"></span>
+            </div>
+            <div class="tricks">
+                <span class="firstCell">Tricks</span>
+                <span id="tricks0" class="cell"></span>
+                <span id="tricks1" class="cell"></span>
+            </div>
+        </div>
+
+        <div id="hand" class="overlay gameInfo">
+            <div id="kittyTaker" class="playerName"></div>
+            <div id="winningBid"></div>
+            <div id="trump"></div>
+        </div>
+
+        <div id="bid" class="overlay hidden tableCenter">
+            <span id="bidPass" onclick="whistGame.makeBid('Pass');">Pass</span>
+            <span id="bid3" onclick="whistGame.makeBid(3);">3</span>
+            <span id="bid4" onclick="whistGame.makeBid(4);">4</span>
+            <span id="bid5" onclick="whistGame.makeBid(5);">5</span>
+            <span id="bid6" onclick="whistGame.makeBid(6);">6</span>
+            <span id="bid7" onclick="whistGame.makeBid(7);">7</span>
+        </div>
+
+        <div id="callTrump" class="overlay hidden tableCenter">
+            <div>
+                <span onclick="whistGame.setTrumpHigh(true);">High</span>
+                <span onclick="whistGame.setTrumpHigh(false);">Low</span>
+            </div>
+            <div>
+                <span class="suit" onclick="whistGame.setTrumpSuit('Clubs');">&clubs;</span>
+                <span class="suit red" onclick="whistGame.setTrumpSuit('Diamonds');">&diams;</span>
+                <span class="suit" onclick="whistGame.setTrumpSuit('Spades');">&spades;</span>
+                <span class="suit red" onclick="whistGame.setTrumpSuit('Hearts');">&hearts;</span>
+                <span onclick="whistGame.setTrumpSuit('No Trump');">No Trump</span>
+            </div>
+            <div id="trumpDone" class="hidden done button" onclick="whistGame.discard();">Done</div>
+        </div>
+
+        <div id="discard" class="overlay hidden tableCenter">
+            <div>Choose 4 cards to discard</div>
+            <div id="discardDone" class="hidden done button" onclick="whistGame.discardDone();">Done</div>
+        </div>
+
+        <div id="message" class="overlay hidden tableCenter"></div>
+
+        <div id="player0" class="player">
+            <div id="playerName0"></div>
+            <div id="playerBid0"></div>
+        </div>
+        <div id="player1" class="player">
+            <div id="playerName1"></div>
+            <div id="playerBid1"></div>
+        </div>
+        <div id="player2" class="player">
+            <div id="playerName2"></div>
+            <div id="playerBid2"></div>
+        </div>
+        <div id="player3" class="player">
+            <div id="playerName3"></div>
+            <div id="playerBid3"></div>
+        </div>
+
+        <div id="dealerChip">D</div>
+    </div>
+
+    <script src="../js/utils.js"></script>
     <script src="../js/game.js"></script>
     <script src="../js/card.js"></script>
+    <script src="../js/deck.js"></script>
+    <script src="../js/player.js"></script>
+    <script src="../js/gameView.js"></script>
     <script src="../js/application.js"></script>
   </body>
 </html>
